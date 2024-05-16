@@ -1,6 +1,10 @@
 import { StateCreator } from 'zustand';
 import { Recipe } from '../types';
 import { RecipesSliceType, createRecipesSlice } from './recipeSlice';
+import {
+  NotificationSliceType,
+  createNotificationSlice,
+} from './notificationSlice';
 
 export type FavoritesSliceType = {
   favorites: Recipe[];
@@ -10,7 +14,7 @@ export type FavoritesSliceType = {
 };
 
 export const createFavoritesSlice: StateCreator<
-  FavoritesSliceType & RecipesSliceType,
+  FavoritesSliceType & RecipesSliceType & NotificationSliceType,
   [],
   [],
   FavoritesSliceType
@@ -21,8 +25,12 @@ export const createFavoritesSlice: StateCreator<
       set((state) => ({
         favorites: state.favorites.filter(
           (favorite) => favorite.idDrink !== recipe.idDrink
-        )
+        ),
       }));
+      createNotificationSlice(set, get, api).showNotification({
+        text: 'Se elimino de favoritos',
+        error: false,
+      });
     } else {
       // * Forma 1
       // set( {
@@ -32,8 +40,12 @@ export const createFavoritesSlice: StateCreator<
       set((state) => ({
         favorites: [...state.favorites, recipe],
       }));
-      createRecipesSlice(set, get, api).closeModal();
       localStorage.setItem('favorites', JSON.stringify(get().favorites));
+      createNotificationSlice(set, get, api).showNotification({
+        text: 'Se agregó a favoritos',
+        error: false,
+      });
+      createRecipesSlice(set, get, api).closeModal();
     }
   },
 
