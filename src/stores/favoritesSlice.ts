@@ -28,7 +28,7 @@ export const createFavoritesSlice: StateCreator<
         ),
       }));
       createNotificationSlice(set, get, api).showNotification({
-        text: 'Se elimino de favoritos',
+        text: 'Se eliminó de favoritos',
         error: false,
       });
     } else {
@@ -40,13 +40,13 @@ export const createFavoritesSlice: StateCreator<
       set((state) => ({
         favorites: [...state.favorites, recipe],
       }));
-      localStorage.setItem('favorites', JSON.stringify(get().favorites));
       createNotificationSlice(set, get, api).showNotification({
         text: 'Se agregó a favoritos',
         error: false,
       });
-      createRecipesSlice(set, get, api).closeModal();
     }
+    localStorage.setItem('favorites', JSON.stringify(get().favorites));
+    createRecipesSlice(set, get, api).closeModal();
   },
 
   favoriteExists: (id) => {
