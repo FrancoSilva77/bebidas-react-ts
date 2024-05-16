@@ -87,27 +87,28 @@ export default function Modal() {
                     as="h3"
                     className="text-gray-900 text-2xl font-extrabold my-5"
                   >
-                    <p className="text-lg">{selectedRecipe.strInstructions}</p>
-
-                    <div className="mt-5 flex justify-between gap-4">
-                      <button
-                        type="button"
-                        onClick={closeModal}
-                        className=" w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500"
-                      >
-                        Cerrar
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleClickFavorite(selectedRecipe)}
-                        className=" w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500"
-                      >
-                        {favoriteExists(selectedRecipe.idDrink)
-                          ? 'Eliminar Favorito'
-                          : 'Agregar Favorito'}
-                      </button>
-                    </div>
+                    Instrucciones
                   </Dialog.Title>
+                  <p className="text-lg">{selectedRecipe.strInstructions}</p>
+
+                  <div className="mt-5 flex justify-between gap-4">
+                    <button
+                      type="button"
+                      onClick={closeModal}
+                      className=" w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500"
+                    >
+                      Cerrar
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleClickFavorite(selectedRecipe)}
+                      className=" w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500"
+                    >
+                      {favoriteExists(selectedRecipe.idDrink)
+                        ? 'Eliminar Favorito'
+                        : 'Agregar Favorito'}
+                    </button>
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

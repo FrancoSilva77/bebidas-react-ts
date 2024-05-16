@@ -21,7 +21,7 @@ export const createFavoritesSlice: StateCreator<
       set((state) => ({
         favorites: state.favorites.filter(
           (favorite) => favorite.idDrink !== recipe.idDrink
-        ),
+        )
       }));
     } else {
       // * Forma 1
