@@ -9,7 +9,7 @@ export default function Modal() {
   const selectedRecipe = useAppStore((state) => state.selectedRecipe);
 
   const renderIngredients = () => {
-    const ingredients : JSX.Element[] = [];
+    const ingredients: JSX.Element[] = [];
     for (let i = 1; i < 6; i++) {
       const ingredient = selectedRecipe[`strIngredient${i}` as keyof Recipe];
       const measure = selectedRecipe[`strMeasure${i}` as keyof Recipe];
@@ -86,6 +86,23 @@ export default function Modal() {
                     className="text-gray-900 text-2xl font-extrabold my-5"
                   >
                     <p className="text-lg">{selectedRecipe.strInstructions}</p>
+
+                    <div className="mt-5 flex justify-between gap-4">
+                      <button
+                        type="button"
+                        onClick={closeModal}
+                        className=" w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500"
+                      >
+                        Cerrar
+                      </button>
+                      <button
+                        type="button"
+                        // onClick={}
+                        className=" w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500"
+                      >
+                        Agregar a Favoritos
+                      </button>
+                    </div>
                   </Dialog.Title>
                 </Dialog.Panel>
               </Transition.Child>
